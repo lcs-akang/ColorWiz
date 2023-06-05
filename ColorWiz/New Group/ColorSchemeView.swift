@@ -17,7 +17,18 @@ struct ColorSchemeView: View {
         let result = (hue + 30).remainder(dividingBy: 360.0)
 
         print("Analagous + 30 is: \(result)")
-        return (result)
+        
+        if result < 0 {
+            
+            let correctedResult = result + 360.0
+            print("Corrected Result: \(correctedResult)")
+            return correctedResult
+            
+        } else {
+            
+            return result
+            
+        }
 
     }
     
@@ -25,9 +36,20 @@ struct ColorSchemeView: View {
 
         let result = (hue - 30).remainder(dividingBy: 360.0)
         print(("Analagous - 30 is: \(result)"))
-        return (result)
-
+        
+        if result < 0 {
+            
+            let correctedResult = result + 360.0
+            print("Corrected Result: \(correctedResult)")
+            return correctedResult
+            
+        } else {
+            
+            return result
+            
+        }
     }
+    
     
     var complementary: Double {
 
