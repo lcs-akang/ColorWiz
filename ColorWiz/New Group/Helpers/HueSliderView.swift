@@ -17,7 +17,7 @@ struct HueSliderView: View {
                 let _ = print(currentHue)
                 Rectangle()
                     .foregroundColor(Color(hue: currentHue/360, saturation: 100.0/100.0, brightness: 100.0/100.0))
-                    .frame(width:1, height: 30)
+                    .frame(width: 0.87, height: 30)
             }
         }
     }

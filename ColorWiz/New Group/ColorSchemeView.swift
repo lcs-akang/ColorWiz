@@ -23,8 +23,16 @@ struct ColorSchemeView: View {
     var analagousB: Double {
 
         let result = (hue + 330)
-        print(abs(result))
+//        print(abs(result))
         return abs(result)
+
+    }
+    
+    var complementary: Double {
+
+        let result = (hue + 180.0).remainder(dividingBy: 360.0)
+        print(result)
+        return result
 
     }
     
@@ -39,7 +47,7 @@ struct ColorSchemeView: View {
                 
                 HueSliderView()
                 
-                Slider(value: $hue, in: 0...360, label: {Text("Hues")}, minimumValueLabel: {Text("0")}, maximumValueLabel: {Text("360")})
+                Slider(value: $hue, in: 0...360, label: {Text("Hues")}, minimumValueLabel: {Text("  0 ")}, maximumValueLabel: {Text("360")})
                     .padding(.horizontal)
                 
                 Text("Hue: \(hue.formatted(.number.precision(.fractionLength(1))))")
@@ -57,7 +65,7 @@ struct ColorSchemeView: View {
                 }
                 
                 HStack {
-                    VStack {
+                    VStack(spacing: 0) {
                         Text("Analogous")
                             .font(.subheadline)
 
@@ -74,7 +82,7 @@ struct ColorSchemeView: View {
                             .frame(width: 100, height: 100)
                     }
                     
-                    VStack {
+                    VStack(spacing: 0) {
                         Text("Monochromatic")
                             .font(.subheadline)
 
@@ -89,6 +97,19 @@ struct ColorSchemeView: View {
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1/3))
                             .frame(width: 100, height: 100)
+                    }
+                    
+                    VStack(spacing: 0) {
+                        Text("Complementary")
+                            .font(.subheadline)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
+                            .frame(width: 100, height: 150)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: complementary/360, saturation: 1, brightness: 1))
+                            .frame(width: 100, height: 150)
                     }
                     
                 }
