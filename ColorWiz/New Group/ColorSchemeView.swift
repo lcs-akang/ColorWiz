@@ -15,23 +15,24 @@ struct ColorSchemeView: View {
     var analagousA: Double {
 
         let result = (hue + 30).remainder(dividingBy: 360.0)
-//        print(abs(result))
-        return abs(result)
+
+        print("Analagous + 30 is: \(result)")
+        return (result)
 
     }
     
     var analagousB: Double {
 
-        let result = (hue + 330)
-//        print(abs(result))
-        return abs(result)
+        let result = (hue - 30).remainder(dividingBy: 360.0)
+        print(("Analagous - 30 is: \(result)"))
+        return (result)
 
     }
     
     var complementary: Double {
 
         let result = (hue + 180.0).remainder(dividingBy: 360.0)
-        print(result)
+        print(("Complementary is: \(result)"))
         return result
 
     }
@@ -43,7 +44,7 @@ struct ColorSchemeView: View {
     var triadic120: Double {
         
         let result = (hue + 120.0).remainder(dividingBy: 360.0)
-        print(result)
+        print("Triadic + 120 is: \(result)")
         return result
         
     }
@@ -51,7 +52,7 @@ struct ColorSchemeView: View {
     var triadic240: Double {
         
         let result = (hue + 240.0).remainder(dividingBy: 360.0)
-        print(result)
+        print("Triadic + 240 is: \(result)")
         return result
         
     }
