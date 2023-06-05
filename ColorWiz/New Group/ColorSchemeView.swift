@@ -12,6 +12,22 @@ struct ColorSchemeView: View {
     // MARK: Stored properties
     @State var hue: Double = 180.0
     
+    var analagousA: Double {
+
+        let result = (hue + 30).remainder(dividingBy: 360.0)
+//        print(abs(result))
+        return abs(result)
+
+    }
+    
+    var analagousB: Double {
+
+        let result = (hue + 330)
+        print(abs(result))
+        return abs(result)
+
+    }
+    
     var R: Double = 0
     var G: Double = 255
     var B: Double = 255
@@ -40,7 +56,42 @@ struct ColorSchemeView: View {
                     Text("B: 255")
                 }
                 
-               
+                HStack {
+                    VStack {
+                        Text("Analogous")
+                            .font(.subheadline)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: analagousB/360, saturation: 1, brightness: 1))
+                            .frame(width: 100, height: 100)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
+                            .frame(width: 100, height: 100)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: analagousA/360, saturation: 1, brightness: 1))
+                            .frame(width: 100, height: 100)
+                    }
+                    
+                    VStack {
+                        Text("Monochromatic")
+                            .font(.subheadline)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
+                            .frame(width: 100, height: 100)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 2/3))
+                            .frame(width: 100, height: 100)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1/3))
+                            .frame(width: 100, height: 100)
+                    }
+                    
+                }
                 
             }
         }
