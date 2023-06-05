@@ -83,7 +83,7 @@ struct ColorSchemeView: View {
                 HStack {
                     VStack(spacing: 0) {
                         Text("Analogous")
-                            .font(.subheadline)
+                            .font(.system(size: 12))
                             .padding(.vertical)
 
                         Rectangle()
@@ -101,7 +101,7 @@ struct ColorSchemeView: View {
                     
                     VStack(spacing: 0) {
                         Text("Monochromatic")
-                            .font(.subheadline)
+                            .font(.system(size: 12))
                             .padding(.vertical)
 
                         Rectangle()
@@ -119,7 +119,7 @@ struct ColorSchemeView: View {
                     
                     VStack(spacing: 0) {
                         Text("Complementary")
-                            .font(.subheadline)
+                            .font(.system(size: 12))
                             .padding(.vertical)
 
                         Rectangle()
@@ -129,6 +129,24 @@ struct ColorSchemeView: View {
                         Rectangle()
                             .foregroundColor(Color(hue: complementary/360, saturation: 1, brightness: 1))
                             .frame(width: 100, height: 150)
+                    }
+                    
+                    VStack(spacing: 0) {
+                        Text("Triadic")
+                            .font(.system(size: 12))
+                            .padding(.vertical)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
+                            .frame(width: 100, height: 100)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: triadic120/360, saturation: 1, brightness: 1))
+                            .frame(width: 100, height: 100)
+
+                        Rectangle()
+                            .foregroundColor(Color(hue: triadic240/360, saturation: 1, brightness: 1))
+                            .frame(width: 100, height: 100)
                     }
                     
                 }
