@@ -12,7 +12,6 @@
 		A7362B332A2919F6001C5587 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7362B322A2919F6001C5587 /* Preview Assets.xcassets */; };
 		A7362B3E2A291AC1001C5587 /* ColorSchemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7362B3D2A291AC1001C5587 /* ColorSchemeView.swift */; };
 		A7CA6B422A2926D9000B5DCC /* HueSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CA6B412A2926D9000B5DCC /* HueSliderView.swift */; };
-		A7CA6B452A2E1573000B5DCC /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CA6B442A2E1573000B5DCC /* FavoritesView.swift */; };
 		A7CA6B482A2E182C000B5DCC /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CA6B472A2E182C000B5DCC /* Result.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,7 +22,6 @@
 		A7362B322A2919F6001C5587 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A7362B3D2A291AC1001C5587 /* ColorSchemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeView.swift; sourceTree = "<group>"; };
 		A7CA6B412A2926D9000B5DCC /* HueSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueSliderView.swift; sourceTree = "<group>"; };
-		A7CA6B442A2E1573000B5DCC /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		A7CA6B472A2E182C000B5DCC /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				A7362B3D2A291AC1001C5587 /* ColorSchemeView.swift */,
-				A7CA6B442A2E1573000B5DCC /* FavoritesView.swift */,
 				A7CA6B432A2926DE000B5DCC /* Helpers */,
 			);
 			name = Views;
@@ -171,7 +168,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7CA6B452A2E1573000B5DCC /* FavoritesView.swift in Sources */,
 				A7CA6B482A2E182C000B5DCC /* Result.swift in Sources */,
 				A7362B3E2A291AC1001C5587 /* ColorSchemeView.swift in Sources */,
 				A7362B2C2A2919ED001C5587 /* ColorWizApp.swift in Sources */,

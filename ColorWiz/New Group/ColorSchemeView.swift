@@ -63,6 +63,7 @@ struct ColorSchemeView: View {
             VStack {
                 
                 HueSliderView()
+                    .padding(.top)
                 
                 Slider(value: $hue, in: 0...360, label: {Text("Hues")}, minimumValueLabel: {Text("  0 ")}, maximumValueLabel: {Text("360")})
                     .padding(.horizontal)
@@ -71,7 +72,7 @@ struct ColorSchemeView: View {
                 
                 Rectangle()
                     .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                    .frame(width: 200, height: 100)
+                    .frame(width: 200, height: 75)
                 
                 HStack {
                     Text("R: 0")
@@ -89,15 +90,15 @@ struct ColorSchemeView: View {
 
                         Rectangle()
                             .foregroundColor(Color(hue: analagousB/360, saturation: 1, brightness: 1))
-                            .frame(width: 90, height: 90)
+                            .frame(width: 75, height: 75)
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 90, height: 90)
+                            .frame(width: 75, height: 75)
 
                         Rectangle()
                             .foregroundColor(Color(hue: analagousA/360, saturation: 1, brightness: 1))
-                            .frame(width: 90, height: 90)
+                            .frame(width: 75, height: 75)
                         
                         Button(action: {
                             
@@ -115,15 +116,15 @@ struct ColorSchemeView: View {
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 90, height: 90)
+                            .frame(width: 75, height: 75)
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 2/3))
-                            .frame(width: 90, height: 90)
+                            .frame(width: 75, height: 75)
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1/3))
-                            .frame(width: 90, height: 90)
+                            .frame(width: 75, height: 75)
                         
                         Button(action: {
                             
@@ -141,11 +142,11 @@ struct ColorSchemeView: View {
                         
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 90, height: 135)
+                            .frame(width: 75, height: 112.5)
                         
                         Rectangle()
                             .foregroundColor(Color(hue: complementary/360, saturation: 1, brightness: 1))
-                            .frame(width: 90, height: 135)
+                            .frame(width: 75, height: 112.5)
                     
                         Button(action: {
                             
@@ -163,15 +164,15 @@ struct ColorSchemeView: View {
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 90, height: 90)
+                            .frame(width: 75, height: 75)
 
                         Rectangle()
                             .foregroundColor(Color(hue: triadic120/360, saturation: 1, brightness: 1))
-                            .frame(width: 90, height: 90)
+                            .frame(width: 75, height: 75)
 
                         Rectangle()
                             .foregroundColor(Color(hue: triadic240/360, saturation: 1, brightness: 1))
-                            .frame(width: 90, height: 90)
+                            .frame(width: 75, height: 75)
                         
                         Button(action: {
                             
@@ -183,7 +184,7 @@ struct ColorSchemeView: View {
                     }
                     
                 }
-                
+                Spacer()
             }
         }
         .navigationTitle("Color Schemes")
