@@ -40,6 +40,22 @@ struct ColorSchemeView: View {
     var G: Double = 255
     var B: Double = 255
     
+    var triadic120: Double {
+        
+        let result = (hue + 120.0).remainder(dividingBy: 360.0)
+        print(result)
+        return result
+        
+    }
+
+    var triadic240: Double {
+        
+        let result = (hue + 240.0).remainder(dividingBy: 360.0)
+        print(result)
+        return result
+        
+    }
+    
     // MARK: Computed properties
     var body: some View {
         NavigationView {
@@ -68,6 +84,7 @@ struct ColorSchemeView: View {
                     VStack(spacing: 0) {
                         Text("Analogous")
                             .font(.subheadline)
+                            .padding(.vertical)
 
                         Rectangle()
                             .foregroundColor(Color(hue: analagousB/360, saturation: 1, brightness: 1))
@@ -85,6 +102,7 @@ struct ColorSchemeView: View {
                     VStack(spacing: 0) {
                         Text("Monochromatic")
                             .font(.subheadline)
+                            .padding(.vertical)
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
@@ -102,6 +120,7 @@ struct ColorSchemeView: View {
                     VStack(spacing: 0) {
                         Text("Complementary")
                             .font(.subheadline)
+                            .padding(.vertical)
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
