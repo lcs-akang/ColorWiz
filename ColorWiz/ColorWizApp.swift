@@ -11,7 +11,21 @@ import SwiftUI
 struct ColorWizApp: App {
     var body: some Scene {
         WindowGroup {
-            ColorSchemeView()
+            
+            TabView {
+                ColorSchemeView()
+                    .tabItem {
+                        Image(systemName: "paintpalette.fill")
+                        Text("Color Schemes")
+                    }
+                
+                FavoritesView()
+                    .tabItem {
+                        Image(systemName: "star.fill")
+                        Text("Favorites")
+                    }
+                
+            }
         }
     }
 }
