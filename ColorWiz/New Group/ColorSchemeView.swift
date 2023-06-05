@@ -11,21 +11,22 @@ struct ColorSchemeView: View {
     
     // MARK: Stored properties
     @State var hue: Double = 180.0
+    @State var saturation: Double = 1.0
+    @State var value: Double = 1.0
     
     var analagousA: Double {
 
         let result = (hue + 30).remainder(dividingBy: 360.0)
 
-        print("Analagous + 30 is: \(result)")
-        
         if result < 0 {
             
             let correctedResult = result + 360.0
-            print("Corrected Result: \(correctedResult)")
+            print("Analagous A Corrected Result: \(correctedResult)")
             return correctedResult
             
         } else {
             
+            print("Analagous + 30 is: \(result)")
             return result
             
         }
@@ -35,16 +36,17 @@ struct ColorSchemeView: View {
     var analagousB: Double {
 
         let result = (hue - 30).remainder(dividingBy: 360.0)
-        print(("Analagous - 30 is: \(result)"))
+        
         
         if result < 0 {
             
             let correctedResult = result + 360.0
-            print("Corrected Result: \(correctedResult)")
+            print("Analagous B Corrected Result: \(correctedResult)")
             return correctedResult
             
         } else {
             
+            print(("Analagous - 30 is: \(result)"))
             return result
             
         }
@@ -54,28 +56,69 @@ struct ColorSchemeView: View {
     var complementary: Double {
 
         let result = (hue + 180.0).remainder(dividingBy: 360.0)
-        print(("Complementary is: \(result)"))
-        return result
+        
+        
+        if result < 0 {
+            
+            let correctedResult = result + 360.0
+            print("Complementary Corrected Result: \(correctedResult)")
+            return correctedResult
+            
+        } else {
+            
+            print(("Complementary is: \(result)"))
+            return result
+            
+        }
 
     }
     
-    var R: Double = 0
-    var G: Double = 255
-    var B: Double = 255
+    var R: Double {
+        return hsvToRGB(hue: hue, saturation: saturation, value: value).0 * 255
+    }
+    var G: Double {
+        return hsvToRGB(hue: hue, saturation: saturation, value: value).1 * 255
+    }
+    var B: Double {
+        return hsvToRGB(hue: hue, saturation: saturation, value: value).2 * 255
+    }
     
     var triadic120: Double {
         
         let result = (hue + 120.0).remainder(dividingBy: 360.0)
-        print("Triadic + 120 is: \(result)")
-        return result
+        
+        if result < 0 {
+            
+            let correctedResult = result + 360.0
+            print("Triadic 120 Corrected Result: \(correctedResult)")
+            return correctedResult
+            
+        } else {
+            
+            print(("Triadic 120 is: \(result)"))
+            return result
+            
+        }
+
         
     }
 
     var triadic240: Double {
         
         let result = (hue + 240.0).remainder(dividingBy: 360.0)
-        print("Triadic + 240 is: \(result)")
-        return result
+        
+        if result < 0 {
+            
+            let correctedResult = result + 360.0
+            print("Triadic 240 Corrected Result: \(correctedResult)")
+            return correctedResult
+            
+        } else {
+            
+            print(("Triadic 240 is: \(result)"))
+            return result
+            
+        }
         
     }
     
@@ -97,11 +140,11 @@ struct ColorSchemeView: View {
                     .frame(width: 200, height: 75)
                 
                 HStack {
-                    Text("R: 0")
+                    Text("R: \(R.formatted(.number.precision(.fractionLength(0))))")
                     
-                    Text("G: 255")
+                    Text("G: \(G.formatted(.number.precision(.fractionLength(0))))")
                     
-                    Text("B: 255")
+                    Text("B: \(B.formatted(.number.precision(.fractionLength(0))))")
                 }
                 
                 HStack {
@@ -210,6 +253,32 @@ struct ColorSchemeView: View {
             }
         }
         .navigationTitle("Color Schemes")
+    }
+    // MARK: Functions
+    
+    func hsvToRGB(hue: Double, saturation: Double, value: Double) -> (Double, Double, Double) {
+        let chroma = value * saturation
+        let huePrime = hue / 60.0
+        let x = chroma * (1 - abs((huePrime.truncatingRemainder(dividingBy: 2)) - 1))
+        let m = value - chroma
+
+        var rgb: (Double, Double, Double)
+        if huePrime < 1 {
+            rgb = (chroma, x, 0)
+        } else if huePrime < 2 {
+            rgb = (x, chroma, 0)
+        } else if huePrime < 3 {
+            rgb = (0, chroma, x)
+        } else if huePrime < 4 {
+            rgb = (0, x, chroma)
+        } else if huePrime < 5 {
+            rgb = (x, 0, chroma)
+        } else {
+            rgb = (chroma, 0, x)
+        }
+
+        rgb = (rgb.0 + m, rgb.1 + m, rgb.2 + m)
+        return rgb
     }
 }
 
