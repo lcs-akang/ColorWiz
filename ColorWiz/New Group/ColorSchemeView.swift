@@ -88,15 +88,23 @@ struct ColorSchemeView: View {
 
                         Rectangle()
                             .foregroundColor(Color(hue: analagousB/360, saturation: 1, brightness: 1))
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
 
                         Rectangle()
                             .foregroundColor(Color(hue: analagousA/360, saturation: 1, brightness: 1))
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            Text("Save")
+                        })
+                        .buttonStyle(.bordered)
+                        .padding(.vertical)
                     }
                     
                     VStack(spacing: 0) {
@@ -106,29 +114,45 @@ struct ColorSchemeView: View {
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 2/3))
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1/3))
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            Text("Save")
+                        })
+                        .buttonStyle(.bordered)
+                        .padding(.vertical)
                     }
                     
                     VStack(spacing: 0) {
                         Text("Complementary")
                             .font(.system(size: 12))
                             .padding(.vertical)
-
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 100, height: 150)
-
+                            .frame(width: 90, height: 135)
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: complementary/360, saturation: 1, brightness: 1))
-                            .frame(width: 100, height: 150)
+                            .frame(width: 90, height: 135)
+                    
+                        Button(action: {
+                            
+                        }, label: {
+                            Text("Save")
+                        })
+                        .buttonStyle(.bordered)
+                        .padding(.vertical)
                     }
                     
                     VStack(spacing: 0) {
@@ -138,15 +162,23 @@ struct ColorSchemeView: View {
 
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
 
                         Rectangle()
                             .foregroundColor(Color(hue: triadic120/360, saturation: 1, brightness: 1))
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
 
                         Rectangle()
                             .foregroundColor(Color(hue: triadic240/360, saturation: 1, brightness: 1))
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            Text("Save")
+                        })
+                        .buttonStyle(.bordered)
+                        .padding(.vertical)
                     }
                     
                 }
