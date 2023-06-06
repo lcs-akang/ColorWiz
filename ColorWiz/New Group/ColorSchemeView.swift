@@ -14,26 +14,28 @@ struct ColorSchemeView: View {
     @State var saturation: Double = 1.0
     @State var value: Double = 1.0
     
-    var analagousA: Double {
+    @State var priorResults: [Result] = []
+    
+    var analogousA: Double {
         
         let result = (hue + 30).remainder(dividingBy: 360.0)
         
         if result < 0 {
             
             let correctedResult = result + 360.0
-            print("Analagous A Corrected Result: \(correctedResult)")
+            print("Analogous A Corrected Result: \(correctedResult)")
             return correctedResult
             
         } else {
             
-            print("Analagous + 30 is: \(result)")
+            print("Analogous + 30 is: \(result)")
             return result
             
         }
         
     }
     
-    var analagousB: Double {
+    var analogousB: Double {
         
         let result = (hue - 30).remainder(dividingBy: 360.0)
         
@@ -41,12 +43,12 @@ struct ColorSchemeView: View {
         if result < 0 {
             
             let correctedResult = result + 360.0
-            print("Analagous B Corrected Result: \(correctedResult)")
+            print("Analogous B Corrected Result: \(correctedResult)")
             return correctedResult
             
         } else {
             
-            print(("Analagous - 30 is: \(result)"))
+            print(("Analogous - 30 is: \(result)"))
             return result
             
         }
@@ -154,7 +156,7 @@ struct ColorSchemeView: View {
                             .padding(.vertical)
                         
                         Rectangle()
-                            .foregroundColor(Color(hue: analagousB/360, saturation: 1, brightness: 1))
+                            .foregroundColor(Color(hue: analogousB/360, saturation: 1, brightness: 1))
                             .frame(width: 75, height: 75)
                         
                         Rectangle()
@@ -162,11 +164,17 @@ struct ColorSchemeView: View {
                             .frame(width: 75, height: 75)
                         
                         Rectangle()
-                            .foregroundColor(Color(hue: analagousA/360, saturation: 1, brightness: 1))
+                            .foregroundColor(Color(hue: analogousA/360, saturation: 1, brightness: 1))
                             .frame(width: 75, height: 75)
                         
                         Button(action: {
                             
+                            let latestResult = Result(type: .analogous,
+                                                      colorH: hue,
+                                                      colorS: saturation,
+                                                      colorV: value)
+                            
+                            priorResults.append(latestResult)
                         }, label: {
                             Text("Save")
                         })
@@ -193,6 +201,12 @@ struct ColorSchemeView: View {
                         
                         Button(action: {
                             
+                            let latestResult = Result(type: .monochromatic,
+                                                      colorH: hue,
+                                                      colorS: saturation,
+                                                      colorV: value)
+                            
+                            priorResults.append(latestResult)
                         }, label: {
                             Text("Save")
                         })
@@ -215,6 +229,12 @@ struct ColorSchemeView: View {
                         
                         Button(action: {
                             
+                            let latestResult = Result(type: .complementary,
+                                                      colorH: hue,
+                                                      colorS: saturation,
+                                                      colorV: value)
+                            
+                            priorResults.append(latestResult)
                         }, label: {
                             Text("Save")
                         })
@@ -241,6 +261,12 @@ struct ColorSchemeView: View {
                         
                         Button(action: {
                             
+                            let latestResult = Result(type: .triadic,
+                                                      colorH: hue,
+                                                      colorS: saturation,
+                                                      colorV: value)
+                            
+                            priorResults.append(latestResult)
                         }, label: {
                             Text("Save")
                         })
@@ -249,7 +275,14 @@ struct ColorSchemeView: View {
                     }
                     
                 }
-                Spacer()
+                List(priorResults.reversed()) { currentResult in
+                    HStack {
+                        Spacer()
+                        ResultView(somePriorResult: currentResult)
+                        Spacer()
+                    }
+                    
+                }
             }
         }
         .navigationTitle("Color Schemes")

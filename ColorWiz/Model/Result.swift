@@ -7,23 +7,25 @@
 
 import Foundation
 
-struct Result {
+enum ColorSwatchType: Int {
+    case analogous = 1
+    case monochromatic = 2
+    case complementary = 3
+    case triadic = 4
+}
+
+struct Result: Identifiable {
+
+    var id = UUID()
+    var type: ColorSwatchType
     
-    var id: Int
-    
-    var type: String
-    
-    var color1H: Double
-    var color1S: Double
-    var color1V: Double
-    
-    var color2H: Double
-    var color2S: Double
-    var color2V: Double
-    
-    var color3H: Double
-    var color3S: Double
-    var color3V: Double
-    
+    var colorH: Double
+    var colorS: Double
+    var colorV: Double
     
 }
+
+let resultforPreviews = Result(type: .complementary,
+                               colorH: 180,
+                               colorS: 100,
+                               colorV: 100)

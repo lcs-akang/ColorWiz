@@ -11,7 +11,7 @@ import SwiftUI
 struct ColorWizApp: App {
     var body: some Scene {
         WindowGroup {
-                ColorSchemeView()
+                ResultView(somePriorResult: resultforPreviews)
         }
     }
 }
