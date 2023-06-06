@@ -15,9 +15,9 @@ struct ColorSchemeView: View {
     @State var value: Double = 1.0
     
     var analagousA: Double {
-
+        
         let result = (hue + 30).remainder(dividingBy: 360.0)
-
+        
         if result < 0 {
             
             let correctedResult = result + 360.0
@@ -34,7 +34,7 @@ struct ColorSchemeView: View {
     }
     
     var analagousB: Double {
-
+        
         let result = (hue - 30).remainder(dividingBy: 360.0)
         
         
@@ -54,7 +54,7 @@ struct ColorSchemeView: View {
     
     
     var complementary: Double {
-
+        
         let result = (hue + 180.0).remainder(dividingBy: 360.0)
         
         
@@ -70,7 +70,7 @@ struct ColorSchemeView: View {
             return result
             
         }
-
+        
     }
     
     var R: Double {
@@ -99,10 +99,10 @@ struct ColorSchemeView: View {
             return result
             
         }
-
+        
         
     }
-
+    
     var triadic240: Double {
         
         let result = (hue + 240.0).remainder(dividingBy: 360.0)
@@ -152,15 +152,15 @@ struct ColorSchemeView: View {
                         Text("Analogous")
                             .font(.system(size: 12))
                             .padding(.vertical)
-
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: analagousB/360, saturation: 1, brightness: 1))
                             .frame(width: 75, height: 75)
-
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
                             .frame(width: 75, height: 75)
-
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: analagousA/360, saturation: 1, brightness: 1))
                             .frame(width: 75, height: 75)
@@ -178,15 +178,15 @@ struct ColorSchemeView: View {
                         Text("Monochromatic")
                             .font(.system(size: 12))
                             .padding(.vertical)
-
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
                             .frame(width: 75, height: 75)
-
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 2/3))
                             .frame(width: 75, height: 75)
-
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1/3))
                             .frame(width: 75, height: 75)
@@ -212,7 +212,7 @@ struct ColorSchemeView: View {
                         Rectangle()
                             .foregroundColor(Color(hue: complementary/360, saturation: 1, brightness: 1))
                             .frame(width: 75, height: 112.5)
-                    
+                        
                         Button(action: {
                             
                         }, label: {
@@ -226,15 +226,15 @@ struct ColorSchemeView: View {
                         Text("Triadic")
                             .font(.system(size: 12))
                             .padding(.vertical)
-
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
                             .frame(width: 75, height: 75)
-
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: triadic120/360, saturation: 1, brightness: 1))
                             .frame(width: 75, height: 75)
-
+                        
                         Rectangle()
                             .foregroundColor(Color(hue: triadic240/360, saturation: 1, brightness: 1))
                             .frame(width: 75, height: 75)
@@ -261,7 +261,7 @@ struct ColorSchemeView: View {
         let huePrime = hue / 60.0
         let x = chroma * (1 - abs((huePrime.truncatingRemainder(dividingBy: 2)) - 1))
         let m = value - chroma
-
+        
         var rgb: (Double, Double, Double)
         if huePrime < 1 {
             rgb = (chroma, x, 0)
@@ -276,7 +276,7 @@ struct ColorSchemeView: View {
         } else {
             rgb = (chroma, 0, x)
         }
-
+        
         rgb = (rgb.0 + m, rgb.1 + m, rgb.2 + m)
         return rgb
     }
