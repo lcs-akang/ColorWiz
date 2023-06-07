@@ -156,14 +156,34 @@ struct ResultView: View {
         
     }
     
- 
+    var color2B: Double {
+        
+        let result = somePriorResult.type
+        
+        if result == .monochromatic {
+            return 2/3
+        } else {
+            return 1
+        }
     }
+    
+    var color3B: Double {
+        
+        let result = somePriorResult.type
+        
+        if result == .monochromatic {
+            return 1/3
+        } else {
+            return 1
+        }
+    }
+    
     // MARK: Computed properties
     var body: some View {
         HStack(spacing: 15) {
             
             Text("\(typeName)")
-                .font(.title2.smallCaps())
+                .font(.title3.smallCaps())
             
             HStack(spacing: 3) {
                 
@@ -172,11 +192,11 @@ struct ResultView: View {
                     .frame(width: colorWidth, height: 50)
                 
                 Rectangle()
-                    .foregroundColor(Color(hue: color2H/360, saturation: 1, brightness: 1))
+                    .foregroundColor(Color(hue: color2H/360, saturation: 1, brightness: color2B))
                     .frame(width: colorWidth, height: 50)
                 
                 Rectangle()
-                    .foregroundColor(Color(hue: color3H/360, saturation: 1, brightness: 1))
+                    .foregroundColor(Color(hue: color3H/360, saturation: 1, brightness: color3B))
                     .frame(width: colorWidthSpecial, height: 50)
                 
                 

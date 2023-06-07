@@ -283,6 +283,9 @@ struct ColorSchemeView: View {
                     }
                     
                 }
+                
+                
+                
             }
         }
         .navigationTitle("Color Schemes")
