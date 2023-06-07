@@ -182,8 +182,15 @@ struct ResultView: View {
     var body: some View {
         HStack(spacing: 15) {
             
-            Text("\(typeName)")
-                .font(.title3.smallCaps())
+            
+            HStack(spacing: 0) {
+                
+                Text("\(typeName)")
+                    .font(.system(size: 18).smallCaps())
+                
+                Spacer()
+                
+            }
             
             HStack(spacing: 3) {
                 

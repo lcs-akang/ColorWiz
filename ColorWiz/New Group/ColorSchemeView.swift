@@ -275,14 +275,19 @@ struct ColorSchemeView: View {
                     }
                     
                 }
-                List(priorResults.reversed()) { currentResult in
-                    HStack {
-                        Spacer()
-                        ResultView(somePriorResult: currentResult)
-                        Spacer()
+                
+                
+                List {
+                    ForEach(priorResults.reversed()) { currentResult in
+                        HStack {
+                            Spacer()
+                            ResultView(somePriorResult: currentResult)
+                            Spacer()
+                        }
                     }
-                    
+                    .onDelete(perform: removeRows)
                 }
+                
                 
                 
                 
@@ -316,6 +321,11 @@ struct ColorSchemeView: View {
         rgb = (rgb.0 + m, rgb.1 + m, rgb.2 + m)
         return rgb
     }
+    
+    func removeRows(at offsets: IndexSet) {
+        priorResults.remove(atOffsets: offsets)
+    }
+    
 }
 
 struct ColorSchemeView_Previews: PreviewProvider {
