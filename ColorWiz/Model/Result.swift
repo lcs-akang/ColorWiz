@@ -25,7 +25,7 @@ struct Result: Identifiable {
     
 }
 
-let resultforPreviews = Result(type: .complementary,
+let resultforPreviews = Result(type: .monochromatic,
                                colorH: 180,
-                               colorS: 100,
-                               colorV: 100)
+                               colorS: 1,
+                               colorV: 1)
