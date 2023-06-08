@@ -266,7 +266,7 @@ struct ColorSchemeView: View {
                                                       colorS: saturation,
                                                       colorV: value)
                             
-                            priorResults.append(latestResult)
+                            priorResults.insert(latestResult, at: 0)
                         }, label: {
                             Text("Save")
                         })
@@ -278,7 +278,7 @@ struct ColorSchemeView: View {
                 
                 
                 List {
-                    ForEach(priorResults.reversed()) { currentResult in
+                    ForEach(priorResults) { currentResult in
                         HStack {
                             Spacer()
                             ResultView(somePriorResult: currentResult)
