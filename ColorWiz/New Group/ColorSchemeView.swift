@@ -174,7 +174,7 @@ struct ColorSchemeView: View {
                                                       colorS: saturation,
                                                       colorV: value)
                             
-                            priorResults.append(latestResult)
+                            priorResults.insert(latestResult, at: 0)
                         }, label: {
                             Text("Save")
                         })
@@ -206,7 +206,7 @@ struct ColorSchemeView: View {
                                                       colorS: saturation,
                                                       colorV: value)
                             
-                            priorResults.append(latestResult)
+                            priorResults.insert(latestResult, at: 0)
                         }, label: {
                             Text("Save")
                         })
@@ -234,7 +234,7 @@ struct ColorSchemeView: View {
                                                       colorS: saturation,
                                                       colorV: value)
                             
-                            priorResults.append(latestResult)
+                            priorResults.insert(latestResult, at: 0)
                         }, label: {
                             Text("Save")
                         })
