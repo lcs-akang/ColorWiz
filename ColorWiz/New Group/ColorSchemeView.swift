@@ -126,174 +126,172 @@ struct ColorSchemeView: View {
     
     // MARK: Computed properties
     var body: some View {
-        NavigationView {
-            VStack {
+        VStack {
+            
+            HueSliderView()
+                .padding(.top)
+            
+            Slider(value: $hue, in: 0...360, label: {Text("Hues")}, minimumValueLabel: {Text("  0 ")}, maximumValueLabel: {Text("360")})
+                .padding(.horizontal)
+            
+            Text("Hue: \(hue.formatted(.number.precision(.fractionLength(1))))")
+            
+            Rectangle()
+                .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
+                .frame(width: 200, height: 75)
+            
+            HStack {
+                Text("R: \(R.formatted(.number.precision(.fractionLength(0))))")
                 
-                HueSliderView()
-                    .padding(.top)
+                Text("G: \(G.formatted(.number.precision(.fractionLength(0))))")
                 
-                Slider(value: $hue, in: 0...360, label: {Text("Hues")}, minimumValueLabel: {Text("  0 ")}, maximumValueLabel: {Text("360")})
-                    .padding(.horizontal)
-                
-                Text("Hue: \(hue.formatted(.number.precision(.fractionLength(1))))")
-                
-                Rectangle()
-                    .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                    .frame(width: 200, height: 75)
-                
-                HStack {
-                    Text("R: \(R.formatted(.number.precision(.fractionLength(0))))")
+                Text("B: \(B.formatted(.number.precision(.fractionLength(0))))")
+            }
+            
+            HStack {
+                VStack(spacing: 0) {
+                    Text("Analogous")
+                        .font(.system(size: 12))
+                        .padding(.vertical)
                     
-                    Text("G: \(G.formatted(.number.precision(.fractionLength(0))))")
+                    Rectangle()
+                        .foregroundColor(Color(hue: analogousB/360, saturation: 1, brightness: 1))
+                        .frame(width: 75, height: 75)
                     
-                    Text("B: \(B.formatted(.number.precision(.fractionLength(0))))")
+                    Rectangle()
+                        .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
+                        .frame(width: 75, height: 75)
+                    
+                    Rectangle()
+                        .foregroundColor(Color(hue: analogousA/360, saturation: 1, brightness: 1))
+                        .frame(width: 75, height: 75)
+                    
+                    Button(action: {
+                        
+                        let latestResult = Result(type: .analogous,
+                                                  colorH: hue,
+                                                  colorS: saturation,
+                                                  colorV: value)
+                        
+                        priorResults.insert(latestResult, at: 0)
+                    }, label: {
+                        Text("Save")
+                    })
+                    .buttonStyle(.bordered)
+                    .padding(.vertical)
                 }
                 
-                HStack {
-                    VStack(spacing: 0) {
-                        Text("Analogous")
-                            .font(.system(size: 12))
-                            .padding(.vertical)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: analogousB/360, saturation: 1, brightness: 1))
-                            .frame(width: 75, height: 75)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 75, height: 75)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: analogousA/360, saturation: 1, brightness: 1))
-                            .frame(width: 75, height: 75)
-                        
-                        Button(action: {
-                            
-                            let latestResult = Result(type: .analogous,
-                                                      colorH: hue,
-                                                      colorS: saturation,
-                                                      colorV: value)
-                            
-                            priorResults.insert(latestResult, at: 0)
-                        }, label: {
-                            Text("Save")
-                        })
-                        .buttonStyle(.bordered)
+                VStack(spacing: 0) {
+                    Text("Monochromatic")
+                        .font(.system(size: 12))
                         .padding(.vertical)
-                    }
                     
-                    VStack(spacing: 0) {
-                        Text("Monochromatic")
-                            .font(.system(size: 12))
-                            .padding(.vertical)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 75, height: 75)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 2/3))
-                            .frame(width: 75, height: 75)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1/3))
-                            .frame(width: 75, height: 75)
-                        
-                        Button(action: {
-                            
-                            let latestResult = Result(type: .monochromatic,
-                                                      colorH: hue,
-                                                      colorS: saturation,
-                                                      colorV: value)
-                            
-                            priorResults.insert(latestResult, at: 0)
-                        }, label: {
-                            Text("Save")
-                        })
-                        .buttonStyle(.bordered)
-                        .padding(.vertical)
-                    }
+                    Rectangle()
+                        .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
+                        .frame(width: 75, height: 75)
                     
-                    VStack(spacing: 0) {
-                        Text("Complementary")
-                            .font(.system(size: 12))
-                            .padding(.vertical)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 75, height: 112.5)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: complementary/360, saturation: 1, brightness: 1))
-                            .frame(width: 75, height: 112.5)
-                        
-                        Button(action: {
-                            
-                            let latestResult = Result(type: .complementary,
-                                                      colorH: hue,
-                                                      colorS: saturation,
-                                                      colorV: value)
-                            
-                            priorResults.insert(latestResult, at: 0)
-                        }, label: {
-                            Text("Save")
-                        })
-                        .buttonStyle(.bordered)
-                        .padding(.vertical)
-                    }
+                    Rectangle()
+                        .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 2/3))
+                        .frame(width: 75, height: 75)
                     
-                    VStack(spacing: 0) {
-                        Text("Triadic")
-                            .font(.system(size: 12))
-                            .padding(.vertical)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
-                            .frame(width: 75, height: 75)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: triadic120/360, saturation: 1, brightness: 1))
-                            .frame(width: 75, height: 75)
-                        
-                        Rectangle()
-                            .foregroundColor(Color(hue: triadic240/360, saturation: 1, brightness: 1))
-                            .frame(width: 75, height: 75)
-                        
-                        Button(action: {
-                            
-                            let latestResult = Result(type: .triadic,
-                                                      colorH: hue,
-                                                      colorS: saturation,
-                                                      colorV: value)
-                            
-                            priorResults.insert(latestResult, at: 0)
-                        }, label: {
-                            Text("Save")
-                        })
-                        .buttonStyle(.bordered)
-                        .padding(.vertical)
-                    }
+                    Rectangle()
+                        .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1/3))
+                        .frame(width: 75, height: 75)
                     
+                    Button(action: {
+                        
+                        let latestResult = Result(type: .monochromatic,
+                                                  colorH: hue,
+                                                  colorS: saturation,
+                                                  colorV: value)
+                        
+                        priorResults.insert(latestResult, at: 0)
+                    }, label: {
+                        Text("Save")
+                    })
+                    .buttonStyle(.bordered)
+                    .padding(.vertical)
                 }
                 
-                
-                List {
-                    ForEach(priorResults) { currentResult in
-                        HStack {
-                            Spacer()
-                            ResultView(somePriorResult: currentResult)
-                            Spacer()
-                        }
-                    }
-                    .onDelete(perform: removeRows)
+                VStack(spacing: 0) {
+                    Text("Complementary")
+                        .font(.system(size: 12))
+                        .padding(.vertical)
+                    
+                    Rectangle()
+                        .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
+                        .frame(width: 75, height: 112.5)
+                    
+                    Rectangle()
+                        .foregroundColor(Color(hue: complementary/360, saturation: 1, brightness: 1))
+                        .frame(width: 75, height: 112.5)
+                    
+                    Button(action: {
+                        
+                        let latestResult = Result(type: .complementary,
+                                                  colorH: hue,
+                                                  colorS: saturation,
+                                                  colorV: value)
+                        
+                        priorResults.insert(latestResult, at: 0)
+                    }, label: {
+                        Text("Save")
+                    })
+                    .buttonStyle(.bordered)
+                    .padding(.vertical)
                 }
                 
-                
-                
+                VStack(spacing: 0) {
+                    Text("Triadic")
+                        .font(.system(size: 12))
+                        .padding(.vertical)
+                    
+                    Rectangle()
+                        .foregroundColor(Color(hue: hue/360, saturation: 1, brightness: 1))
+                        .frame(width: 75, height: 75)
+                    
+                    Rectangle()
+                        .foregroundColor(Color(hue: triadic120/360, saturation: 1, brightness: 1))
+                        .frame(width: 75, height: 75)
+                    
+                    Rectangle()
+                        .foregroundColor(Color(hue: triadic240/360, saturation: 1, brightness: 1))
+                        .frame(width: 75, height: 75)
+                    
+                    Button(action: {
+                        
+                        let latestResult = Result(type: .triadic,
+                                                  colorH: hue,
+                                                  colorS: saturation,
+                                                  colorV: value)
+                        
+                        priorResults.insert(latestResult, at: 0)
+                    }, label: {
+                        Text("Save")
+                    })
+                    .buttonStyle(.bordered)
+                    .padding(.vertical)
+                }
                 
             }
+            
+            
+            List {
+                ForEach(priorResults) { currentResult in
+                    HStack {
+                        Spacer()
+                        ResultView(somePriorResult: currentResult)
+                        Spacer()
+                    }
+                }
+                .onDelete(perform: removeRows)
+            }
+            
+            
+            
+            
+            
         }
-        .navigationTitle("Color Schemes")
     }
     // MARK: Functions
     
